@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SearchBar from './components/searchBar';
 
 const config = require('../config');
 
@@ -7,7 +8,11 @@ const config = require('../config');
 //create new component that will produce HTML
 
 const App = () => {
-  return <div>Hola!</div>//JSX
+  return (
+    <div>
+      <SearchBar />      
+    </div>//JSX
+  )
 }
 
 //take componenets generated HTML and place it into DOM
