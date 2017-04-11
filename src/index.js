@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+const config = require('../config');
+
+
 //create new component that will produce HTML
 
 const App = () => {
