@@ -4,6 +4,7 @@ import YTSearch from 'youtube-api-search';
 
 import SearchBar from './components/searchBar';
 import VideoList from './components/videoList'
+import VideoDetail from './components/videoDetail'
 
 const config = require('../config');
 const API_KEY = config.API_KEY
@@ -15,11 +16,16 @@ class App extends Component {
   constructor(props){
     super(props);
 
-    this.state = { videos: [] };
+    this.state = { 
+      videos: [],
+      selectedVideo: null
+    };
 
     YTSearch({key: API_KEY, term: 'braille skateboarding'}, (videos) => {
-      this.setState({ videos })
-      console.log(videos)
+      this.setState({ 
+        videos: videos,
+        selectedVideo: videos[0]
+      })
     })
   }
 
@@ -27,6 +33,7 @@ class App extends Component {
       return (
       <div>
         <SearchBar />
+        <VideoDetail video={this.state.selectedVideo}/>
         <VideoList videos={this.state.videos} />      
       </div>//JSX
     )
