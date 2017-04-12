@@ -9,9 +9,6 @@ import VideoDetail from './components/videoDetail'
 const config = require('../config');
 const API_KEY = config.API_KEY
 
-
-//create new component that will produce HTML
-
 class App extends Component {
   constructor(props){
     super(props);
@@ -21,7 +18,11 @@ class App extends Component {
       selectedVideo: null
     };
 
-    YTSearch({key: API_KEY, term: 'braille skateboarding'}, (videos) => {
+    this.videosSearch('braille skateboarding');
+  }
+
+  videosSearch(term) {
+    YTSearch({key: API_KEY, term: term}, (videos) => {
       this.setState({ 
         videos: videos,
         selectedVideo: videos[0]
@@ -32,14 +33,14 @@ class App extends Component {
   render(){
       return (
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={term => this.videosSearch(term)} />
         <VideoDetail video={this.state.selectedVideo}/>
-        <VideoList videos={this.state.videos} />      
+        <VideoList 
+          onVideoSelect={selectedVideo => this.setState({selectedVideo})}
+          videos={this.state.videos} />      
       </div>//JSX
     )
   }
 }
-
-//take componenets generated HTML and place it into DOM
 
 ReactDOM.render(<App/>, document.querySelector('.container'));//second argument is target DOM node where App will be inserted
