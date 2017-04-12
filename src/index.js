@@ -19,6 +19,7 @@ class App extends Component {
 
     YTSearch({key: API_KEY, term: 'braille skateboarding'}, (videos) => {
       this.setState({ videos })
+      console.log(videos)
     })
   }
 
