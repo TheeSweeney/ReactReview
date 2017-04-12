@@ -7,12 +7,20 @@ import SearchBar from './components/searchBar';
 const config = require('../config');
 const API_KEY = config.API_KEY
 
-YTSearch({key: API_KEY, term: 'daft punk'}, function(data){
-  console.log(data)
-})
+
 //create new component that will produce HTML
 
 class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = { videos: [] };
+
+    YTSearch({key: API_KEY, term: 'braille skateboarding'}, (videos) => {
+      this.setState({ videos })
+    })
+  }
+
   render(){
       return (
       <div>
